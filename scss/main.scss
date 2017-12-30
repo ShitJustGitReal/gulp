@@ -1,0 +1,16 @@
+// include another .scss file from a sub-directory
+@import './about/about.scss';
+
+body {
+    h1 {
+        color: rgb(212, 5, 5);
+    }
+}
+
+.imgContainer {
+    border: 1px solid black;
+    max-width: 500px;
+    height: 350px;
+    background-image: url("../images/grumpy.jpg?size=500");
+    background-repeat: no-repeat;
+}

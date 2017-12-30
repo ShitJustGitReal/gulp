@@ -1,0 +1,36 @@
+{
+  "name": "gulp-prod-environment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "build": "gulp"
+  },
+  "keywords": [
+    "gulp",
+    "sass",
+    "jquery",
+    "images"
+  ],
+  "author": "Obi-Bram-Kenobi",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^7.2.3",
+    "css-mqpacker": "^6.0.1",
+    "cssnano": "^3.10.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-deporder": "^1.1.0",
+    "gulp-htmlclean": "^2.7.16",
+    "gulp-imagemin": "^4.0.0",
+    "gulp-newer": "^1.3.0",
+    "gulp-postcss": "^7.0.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-strip-debug": "^1.1.0",
+    "gulp-uglify": "^3.0.0",
+    "postcss-assets": "^5.0.0"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}
