@@ -7,8 +7,9 @@ const
     gzip = require('gulp-gzip'), // generate gzip files of html, css and javascript files (images are already compressed in another way)
     // IMAGES
     imagemin = require('gulp-imagemin'), // compress images and copy them to the build folder
-    // HTML
-    htmlclean = require('gulp-htmlclean'), // minify html code
+    responsive = require('gulp-responsive'); // making multiple images out of one for responsive designs
+// HTML
+htmlclean = require('gulp-htmlclean'), // minify html code
     // JAVASCRIPT
     concat = require('gulp-concat'), // concatenate all script files into a single main.js file
     deporder = require('gulp-deporder'), // ensure javascript dependencies are loaded first 
@@ -22,10 +23,10 @@ const
     mqpacker = require('css-mqpacker'), // pack multiple references to same media query into a single rule
     cssnano = require('cssnano'), // minify the CSS code
 
-    // development mode?
+    // DEVELOPMENT MODE?
     devBuild = (process.env.NODE_ENV !== 'production'),
 
-    // folders
+    // FOLDERS
     folder = {
         build: 'build/'
     };
@@ -33,10 +34,33 @@ const
 // IMAGES: minify and copy them to the build folder
 gulp.task('images', function () {
     let out = folder.build + 'images/';
-    return gulp.src('images/**/*')
+    return gulp.src('images/*.{png,jpg,svg}')
         .pipe(newer(out))
         .pipe(imagemin({
             optimizationLevel: 5
+        }))
+        .pipe(gulp.dest(out));
+});
+
+// responsive images from raw image
+gulp.task('responsive', function () {
+    let out = 'images/';
+    return gulp.src('images/raw/*.{png,jpg}')
+        .pipe(responsive({
+            '**/*.*': [{
+                width: 200,
+                rename: {
+                    suffix: '-200'
+                }
+            }, {
+                width: 500,
+                rename: {
+                    suffix: '-500'
+                }
+            }]
+
+        }, {
+            errorOnEnlargement: false,
         }))
         .pipe(gulp.dest(out));
 });
@@ -48,8 +72,8 @@ gulp.task('html', ['images'], function () {
         page = gulp.src('html/**/*')
         .pipe(newer(out))
         .pipe(htmlclean());
-        // .pipe(gzip());
-        return page.pipe(gulp.dest(out));
+    // .pipe(gzip());
+    return page.pipe(gulp.dest(out));
 });
 
 // JAVASCRIPT

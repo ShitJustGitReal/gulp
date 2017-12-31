@@ -19,3 +19,15 @@ npm install
 4. Run the tasks in the gulpfile.js configuration file:
 gulp run
 
+// WINDOWS 10: EXTRA REQUIREMENTS TO MAKE GULP RESPONSIVE IMAGES WORK (else the Sharp dependency will not install and throw errors)
+http://sharp.dimens.io/en/stable/install/#prerequisites
+https://github.com/nodejs/node-gyp#installation
+
+1. Install Microsoft's windows-build-tools from CMD.exe as an administrator (search for CMD.exe in Windows and right click on it to run as Administrator):
+npm install --global --production windows-build-tools 
+
+2. In the same CMD.exe, you need to install node-gyp, a cross-platform command-line tool written in Node.js for compiling native addon modules for Node.js.
+npm install -g node-gyp
+
+3. Now you need to go back to the project file and install Gulp Responsive in the project, which creates a package-lock.json file as well:
+npm install --save-dev gulp-responsive
