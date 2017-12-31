@@ -1,6 +1,7 @@
 
 Sources for this example project are:
 https://www.sitepoint.com/introduction-gulp-js/
+https://betterexplained.com/articles/how-to-optimize-your-site-with-gzip-compression/
 https://www.npmjs.com/package/gulp-gzip
 https://www.npmjs.com/package/gulp-webserver
 https://www.npmjs.com/package/gulp-responsive 

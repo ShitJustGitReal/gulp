@@ -4,6 +4,7 @@ const
     // GENERAL
     gulp = require('gulp'),
     newer = require('gulp-newer'), // only run the task on new and modified files
+    gzip = require('gulp-gzip'), // generate gzip files of html, css and javascript files (images are already compressed in another way)
     // IMAGES
     imagemin = require('gulp-imagemin'), // compress images and copy them to the build folder
     // HTML
@@ -47,6 +48,7 @@ gulp.task('html', ['images'], function () {
         page = gulp.src('html/**/*')
         .pipe(newer(out))
         .pipe(htmlclean());
+        // .pipe(gzip());
         return page.pipe(gulp.dest(out));
 });
 
@@ -56,7 +58,8 @@ gulp.task('js', function () {
         .pipe(deporder())
         .pipe(concat('main.js'))
         .pipe(stripdebug())
-        .pipe(uglify());
+        .pipe(uglify())
+        .pipe(gzip());
     return jsbuild.pipe(gulp.dest(folder.build + 'js/'));
 });
 
@@ -80,6 +83,7 @@ gulp.task('css', ['images'], function () {
             errLogToConsole: true
         }))
         .pipe(postcss(postCssOpts))
+        .pipe(gzip())
         .pipe(gulp.dest(folder.build + 'css/'));
 });
 
