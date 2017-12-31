@@ -1,7 +1,9 @@
 
-Sources and credits for this example project are:
+Sources for this example project are:
 https://www.sitepoint.com/introduction-gulp-js/
+https://www.npmjs.com/package/gulp-gzip
 https://www.npmjs.com/package/gulp-webserver
+https://www.npmjs.com/package/gulp-responsive 
 
 1. First install Gulp globally so the gulp command can be run from any project folder:
 npm install gulp-cli -g
