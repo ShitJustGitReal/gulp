@@ -5,11 +5,12 @@ const
     gulp = require('gulp'),
     newer = require('gulp-newer'), // only run the task on new and modified files
     gzip = require('gulp-gzip'), // generate gzip files of html, css and javascript files (images are already compressed in another way)
+    webserver = require('gulp-webserver'), // streaming gulp plugin to run a local webserver with LiveReload
     // IMAGES
     imagemin = require('gulp-imagemin'), // compress images and copy them to the build folder
-    responsive = require('gulp-responsive'); // making multiple images out of one for responsive designs
-// HTML
-htmlclean = require('gulp-htmlclean'), // minify html code
+    responsive = require('gulp-responsive'), // making multiple images out of one for responsive designs
+    // HTML
+    htmlclean = require('gulp-htmlclean'), // minify html code
     // JAVASCRIPT
     concat = require('gulp-concat'), // concatenate all script files into a single main.js file
     deporder = require('gulp-deporder'), // ensure javascript dependencies are loaded first 
@@ -22,10 +23,8 @@ htmlclean = require('gulp-htmlclean'), // minify html code
     autoprefixer = require('autoprefixer'), // automatically add vendor prefixes to CSS properties
     mqpacker = require('css-mqpacker'), // pack multiple references to same media query into a single rule
     cssnano = require('cssnano'), // minify the CSS code
-
     // DEVELOPMENT MODE?
     devBuild = (process.env.NODE_ENV !== 'production'),
-
     // FOLDERS
     folder = {
         build: 'build/'
@@ -68,7 +67,7 @@ gulp.task('responsive', function () {
 // HTML: minify
 gulp.task('html', ['images'], function () {
     let
-        out = folder.build + 'html/',
+        out = folder.build,
         page = gulp.src('html/**/*')
         .pipe(newer(out))
         .pipe(htmlclean());
@@ -124,3 +123,15 @@ gulp.task('watch', function () {
     gulp.watch('scss/**/*', ['css']);
 });
 gulp.task('run', ['build', 'watch']);
+
+// WEBSERVER
+gulp.task('webserver', function() {
+    gulp.src('build')
+      .pipe(webserver({
+        port: 3000,
+        livereload: true,
+        //directoryListing: true,
+        open: true,
+        fallback: 'index.html',
+      }));
+  });

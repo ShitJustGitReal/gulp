@@ -6,6 +6,8 @@ https://www.npmjs.com/package/gulp-gzip
 https://www.npmjs.com/package/gulp-webserver
 https://www.npmjs.com/package/gulp-responsive 
 https://stackoverflow.com/questions/16827858/npm-warn-package-json-no-repository-field
+https://www.npmjs.com/package/gulp-webserver
+https://stackoverflow.com/questions/31332295/using-gulp-to-setup-a-local-webserver 
 
 1. First install Gulp globally so the gulp command can be run from any project folder:
 npm install gulp-cli -g
